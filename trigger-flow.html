@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trigger Teams Message</title>
+</head>
+<body>
+  <p>Triggering Teams message...</p>
+
+  <script>
+    // Power Automate flow URL
+    const flowUrl = "https://defaultd1ba2c8c135540a8af7eb24fcb51f6.e7.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/0ff05139071a44498a0f0702450a5a6c/triggers/manual/paths/invoke/?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=LlX-wTf-GE3G2sNsFnumyvLhIT8syjOmvwNi1-1IVfc";
+
+    // Message to send
+    const payload = {
+      message: "Hello Teams! This message was triggered via QR code."
+    };
+
+    fetch(flowUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log("Teams message sent successfully!");
+      } else {
+        console.error("Error sending message:", response.statusText);
+      }
+    })
+    .catch(error => {
+      console.error("Error sending message:", error);
+    });
+  </script>
+</body>
+</html>
